@@ -12,6 +12,9 @@ import {
 import Title from "./Title";
 import { useStore } from "../state/state";
 
+// useEffect(() => {
+
+// }, [])
 // Generate Sales Data
 
 

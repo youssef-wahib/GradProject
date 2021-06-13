@@ -46,8 +46,7 @@ function App() {
           <Route path="/register">
             <SignUp />
           </Route>
-
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
+          <Route render={() => <Redirect to="/login" />} />
         </Switch>
       ) : (
         <Layout>

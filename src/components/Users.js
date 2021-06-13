@@ -29,11 +29,27 @@ export default function Users() {
     <React.Fragment>
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
-          <Paper>
-            <Typography variant="h4" color="secondary">
-              this is a test
-            </Typography>
-          </Paper>
+          <Grid item lg={6} md={6} xs={12}>
+            <Paper className={fixedHeightPaper}>
+              <Typography variant="h4" color="secondary">
+                this is a test
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item lg={6} md={6} xs={12}>
+            <Paper className={fixedHeightPaper}>
+              <Typography variant="h4" color="secondary">
+                this is a test
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item lg={6} md={6} xs={12}>
+            <Paper className={fixedHeightPaper}>
+              <Typography variant="h4" color="secondary">
+                this is a test
+              </Typography>
+            </Paper>
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>
