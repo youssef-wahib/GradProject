@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "@material-ui/core/styles";
 import {
   LineChart,
@@ -10,6 +10,9 @@ import {
 } from "recharts";
 import Title from "./Title";
 
+// useEffect(() => {
+
+// }, [])
 // Generate Sales Data
 function createData(time, amount) {
   return { time, amount };
