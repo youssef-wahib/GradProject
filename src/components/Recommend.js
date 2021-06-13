@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { database } from "../state/firebase";
 import {
   makeStyles,
   Container,
@@ -50,6 +50,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Recommend() {
+  
+  let temp = [] 
+  useEffect(() => {
+    
+    let starCountRef = database.ref('Category/');
+  starCountRef.on('value', (snapshot) => {
+    const points = snapshot.val();
+    
+     
+     
+      for(let l in Object.keys(points)){
+        
+            temp.push( points[Object.keys(points)[l]])
+            
+      }
+      
+     console.log(temp) 
+  });
+  }, [])
+  
+  
+  function writeNewPost( categorie, body) {
+    // A post entry.
+    var postData = {
+      
+      Recommendation: body,
+      
+    };
+  
+    // Get a key for a new Post.
+    var newPostKey = database.ref().child('Category').push().key;
+  
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    var updates = {};
+    updates['/Category/'+ categorie+ "/" + newPostKey] = postData;
+    
+  
+    return database.ref().update(updates);
+  }
   const Categories = [
     "Excellent",
     "Good",
@@ -64,10 +103,13 @@ export default function Recommend() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Category, Recommendation);
+   
+    writeNewPost(Category,Recommendation)
   };
 
   return (
+    
+
     <React.Fragment>
       <Container maxWidth="lg" className={classes.container}>
         <Grid container>
@@ -139,7 +181,7 @@ export default function Recommend() {
             </Typography>
             <List>
               <ListItem>
-                item 1
+                
                 <IconButton edge="end" aria-label="delete">
                   <RemoveCircleOutlineIcon />
                 </IconButton>

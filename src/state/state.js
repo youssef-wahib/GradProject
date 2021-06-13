@@ -9,5 +9,7 @@ export const useStore = create((set) => ({
     signup: (email,password) => {authh.createUserWithEmailAndPassword(email, password)},
     login: (email,password) => {authh.signInWithEmailAndPassword(email, password)},
     logout: () => {authh.signOut()},
+    graph: [],
+    setGraph: (inp) => set((state) => ({ graph: inp }))
    
   }));

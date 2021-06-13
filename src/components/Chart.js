@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@material-ui/core/styles";
+import {database} from "../state/firebase"
 import {
   LineChart,
   Line,
@@ -9,11 +10,18 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Title from "./Title";
+import { useStore } from "../state/state";
 
 // Generate Sales Data
+
+
+
+
 function createData(time, amount) {
   return { time, amount };
 }
+
+
 
 const data = [
   createData("00:00", 110),
@@ -29,13 +37,35 @@ const data = [
 
 export default function Chart() {
   const theme = useTheme();
-
+  const {graph, setGraph} = useStore()
+  
+  
+  let temp = [] 
+  useEffect(() => {
+    
+    let starCountRef = database.ref('Readings/');
+  starCountRef.on('value', (snapshot) => {
+    const points = snapshot.val();
+    
+     
+     
+      for(let l in Object.keys(points)){
+        
+            temp.push(createData(Object.keys(points)[l], points[Object.keys(points)[l]]))
+            
+      }
+      setGraph(temp)
+      
+  });
+  }, [])
+  
+  
   return (
     <React.Fragment>
       <Title>Today</Title>
       <ResponsiveContainer>
         <LineChart
-          data={data}
+          data={graph}
           margin={{
             top: 16,
             right: 16,
