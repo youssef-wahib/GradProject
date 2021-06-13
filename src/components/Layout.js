@@ -207,18 +207,6 @@ export default function Dashboard({ children }) {
           <ListItem
             button
             onClick={() => {
-              history.push("Reports");
-              setSelectedPage("Reports");
-            }}
-          >
-            <ListItemIcon>
-              <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Reports" />
-          </ListItem>
-          <ListItem
-            button
-            onClick={() => {
               history.push("Warnings");
               setSelectedPage("Warnings");
             }}
