@@ -50,66 +50,76 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Recommend() {
-  
-  let temp = [] 
+  let temp = [];
   useEffect(() => {
-    
-    let starCountRef = database.ref('Category/');
-  starCountRef.on('value', (snapshot) => {
-    const points = snapshot.val();
-    
-     
-     
-      for(let l in Object.keys(points)){
-        
-            temp.push( points[Object.keys(points)[l]])
-            
+    let setRecommend = database.ref("Category/");
+    setRecommend.on("value", (snapshot) => {
+      const points = snapshot.val();
+      for (let l in Object.keys(points)) {
+        temp.push(points[Object.keys(points)[l]]);
       }
-      
-     console.log(temp) 
-  });
-  }, [])
-  
-  
-  function writeNewPost( categorie, body) {
+    });
+  }, []);
+
+  const writeNewPost = (categorie, body) => {
     // A post entry.
-    var postData = {
-      
+    let postData = {
       Recommendation: body,
-      
     };
-  
+    let getRecommend = database.ref("Category/" + categorie);
+    getRecommend.on("value", (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+    });
+
     // Get a key for a new Post.
-    var newPostKey = database.ref().child('Category').push().key;
-  
+    let newPostKey = database.ref().child("Category").push().key;
+
     // Write the new post's data simultaneously in the posts list and the user's post list.
-    var updates = {};
-    updates['/Category/'+ categorie+ "/" + newPostKey] = postData;
-    
-  
+    let updates = {};
+    updates["/Category/" + categorie + "/" + newPostKey] = postData;
+
     return database.ref().update(updates);
-  }
+  };
   const Categories = [
-    "Excellent",
-    "Good",
     "Lightly Polluted",
     "Moderately Polluted",
     "Heavily Polluted",
     "Severely Polluted",
   ];
   const classes = useStyles();
-  const [Category, setCategory] = useState("Excellent");
+  const [Category, setCategory] = useState("Lightly Polluted");
   const [Recommendation, setRecommendation] = useState("");
+  const [LP, setLP] = useState();
+  const [MP, setMP] = useState();
+  const [HP, setHP] = useState();
+  const [SP, setSP] = useState();
+  const [loading, setLoading] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
-    writeNewPost(Category,Recommendation)
+    writeNewPost(Category, Recommendation);
   };
 
-  return (
-    
+  useEffect(() => {
+    let readRecommend = database.ref("Category/");
+    readRecommend.on("value", (snapshot) => {
+      const data = snapshot.val();
+      console.log({data})
+      setHP(Object.values(data)[0]);
+      setLP(Object.values(data)[1]);
+      setMP(Object.values(data)[2]);
+      setSP(Object.values(data)[3]);
+      // used for adding or removing
+      setLoading(false)
 
+    });
+  }, [loading]);
+
+  if (loading)
+    return "Loading...";
+
+  return (
     <React.Fragment>
       <Container maxWidth="lg" className={classes.container}>
         <Grid container>
@@ -125,7 +135,7 @@ export default function Recommend() {
               <TextField
                 color="secondary"
                 id="newRecommendation"
-                label="New Recomendation"
+                label="New Recommendation"
                 variant="filled"
                 value={Recommendation}
                 onChange={(e) => setRecommendation(e.target.value)}
@@ -181,7 +191,6 @@ export default function Recommend() {
             </Typography>
             <List>
               <ListItem>
-                
                 <IconButton edge="end" aria-label="delete">
                   <RemoveCircleOutlineIcon />
                 </IconButton>
