@@ -62,10 +62,10 @@ export default function Recommend() {
      
       for(let l in Object.keys(points)){
         
-            temp.push(points[Object.keys(points)[l]])
+            temp.push( points[Object.keys(points)[l]])
             
       }
-      console.log(points[Object.keys(points)[0]])
+      
      console.log(temp) 
   });
   }, [])

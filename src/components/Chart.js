@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@material-ui/core/styles";
 import {database} from "../state/firebase"
-
 import {
   LineChart,
   Line,
@@ -40,7 +39,6 @@ const data = [
 ];
 
 export default function Chart() {
-  
   const theme = useTheme();
   const {graph, setGraph} = useStore()
   
