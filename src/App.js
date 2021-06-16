@@ -15,8 +15,6 @@ import Recommend from "./components/Recommend";
 import MainDashboard from "./components/MainDashboard";
 import Users from "./components/Users";
 import Warnings from "./components/Warnings";
-import Reports from "./components/Reports";
-
 function App() {
   const { user, loading, setUser, setLoading } = useStore();
   useEffect(() => {
@@ -63,9 +61,7 @@ function App() {
             <Route path="/Warnings">
               <Warnings />
             </Route>
-            <Route path="/Reports">
-              <Reports />
-            </Route>
+
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </Layout>
