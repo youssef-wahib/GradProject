@@ -15,9 +15,26 @@ import Recommend from "./components/Recommend";
 import MainDashboard from "./components/MainDashboard";
 import Users from "./components/Users";
 import Warnings from "./components/Warnings";
-
+import {database} from "./state/firebase"
+function createData(time, amount) {
+  return { time, amount };
+}
 function App() {
   const { user, loading, setUser, setLoading } = useStore();
+  const { graph, setGraph } = useStore();
+
+  let temp = [];
+  useEffect(() => {
+    let starCountRef = database.ref("Readings/");
+    starCountRef.on("value", (snapshot) => {
+      const points = snapshot.val();
+      Object.entries(points).map((values) => {
+        temp.push(createData(values[0], values[1]));
+      });
+
+      setGraph(temp);
+    });
+  }, []);
   useEffect(() => {
     const unsubscribe = authh.onAuthStateChanged((user) => {
       setUser(user);
