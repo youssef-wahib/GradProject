@@ -6411,6 +6411,11 @@ is-accessor-descriptor@^1.0.0:
   dependencies:
     kind-of "^6.0.0"
 
+is-any-array@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-any-array/-/is-any-array-1.0.0.tgz#bcb2c7e2d28aaa2fa02ee8f6b604b0b3a957bba7"
+  integrity sha512-0o0ZsgObnylv72nO39P6M+PL7jPUEx39O6BEfZuX36IKPy/RpdudxluAIaRn/LZi5eVPDMlMBaLABzOK6bwPlw==
+
 is-arguments@^1.0.4:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-arguments/-/is-arguments-1.1.0.tgz#62353031dfbee07ceb34656a6bde59efecae8dd9"
@@ -7968,6 +7973,20 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
+
+ml-regression-base@^2.0.1:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/ml-regression-base/-/ml-regression-base-2.1.3.tgz#1afe8df421240348b75b144f41a47b1c1faf2c0f"
+  integrity sha512-Jcz/1bcKs7sHxZlVzSBDw1CTmaywVSVgDEws3cxEHve8Xy1wP2DqNLcjShbkF6hqe/Me+S0Pssp4HRIDlnNE2w==
+  dependencies:
+    is-any-array "^1.0.0"
+
+ml-regression-simple-linear@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ml-regression-simple-linear/-/ml-regression-simple-linear-2.0.3.tgz#c7de3623289e6ac1185b720bdea44ed0bc9b3cea"
+  integrity sha512-xcLviI0Gqs0TXE5+QsPLbJm372RyZsX6xmsufez3Dz6vq/r10+KyOJ8JvUimhryKvPaZQvx6BTnzAfQbj/IeLQ==
+  dependencies:
+    ml-regression-base "^2.0.1"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
