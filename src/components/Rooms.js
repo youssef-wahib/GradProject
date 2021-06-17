@@ -10,21 +10,16 @@ import {
 } from "@material-ui/core";
 import Title from "./Title";
 
-function createData(id, name, level, recomendedLevel) {
-  return { id, name, level, recomendedLevel };
+function createData(id, name, level, recommendedLevel) {
+  return { id, name, level, recommendedLevel };
 }
 
-// save selected row (use Id )  use state selecte id ans use it to change color
 const rows = [
   createData(0, "Reception", "201", "110"),
   createData(1, "Nursing room", "102", "110"),
   createData(2, "Emergency unit", "140", "110"),
-  createData(3, "Patiaents rooms", "203", "110"),
-  createData(4, "Emergency unit", "301", "110"),
+  createData(3, "Patient rooms", "203", "110"),
 ];
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -48,7 +43,7 @@ export default function Rooms() {
           <TableRow>
             <TableCell size="medium">Room</TableCell>
             <TableCell>Level</TableCell>
-            <TableCell>Recomended Level</TableCell>
+            <TableCell>Recommended Level</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,16 +57,12 @@ export default function Rooms() {
             >
               <TableCell size="medium">{row.name}</TableCell>
               <TableCell>{row.level}</TableCell>
-              <TableCell>{row.recomendedLevel}</TableCell>
+              <TableCell>{row.recommendedLevel}</TableCell>
             </TableRow>
           ))}
         </TableBody>
+        <div className={classes.seeMore}></div>
       </Table>
-      <div className={classes.seeMore}>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          See more readings
-        </Link>
-      </div>
     </React.Fragment>
   );
 }

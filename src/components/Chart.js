@@ -24,11 +24,10 @@ export default function Chart() {
     let starCountRef = database.ref("Readings/");
     starCountRef.on("value", (snapshot) => {
       const points = snapshot.val();
-      for (let l in Object.keys(points)) {
-        temp.push(
-          createData(Object.keys(points)[l], points[Object.keys(points)[l]])
-        );
-      }
+      Object.entries(points).map((values) => {
+        temp.push(createData(values[0], values[1]));
+      });
+
       setGraph(temp);
     });
   }, []);
