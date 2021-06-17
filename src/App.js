@@ -16,6 +16,7 @@ import MainDashboard from "./components/MainDashboard";
 import Users from "./components/Users";
 import Warnings from "./components/Warnings";
 import {database} from "./state/firebase"
+import { Alert, AlertTitle } from '@material-ui/lab';
 function createData(time, amount) {
   return { time, amount };
 }
