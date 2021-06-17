@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid, Paper, makeStyles } from "@material-ui/core";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import Rooms from "./Rooms";
 import clsx from "clsx";
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -41,7 +41,7 @@ export default function MainDashboard() {
           {/* Status of Rooms */}
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Orders />
+              <Rooms />
             </Paper>
           </Grid>
         </Grid>
