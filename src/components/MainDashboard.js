@@ -27,21 +27,21 @@ export default function MainDashboard() {
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
           {/* Chart */}
-          <Grid item xs={12} md={8} lg={9}>
+          <Grid item xs={12} md={12} lg={12}>
             <Paper className={fixedHeightPaper}>
               <Chart />
+            </Paper>
+          </Grid>
+          {/* Status of Rooms */}
+          <Grid xs={12} md={8} lg={9}>
+            <Paper className={classes.paper}>
+              <Rooms />
             </Paper>
           </Grid>
           {/* Current AQI  of current room */}
           <Grid item xs={12} md={4} lg={3}>
             <Paper className={fixedHeightPaper}>
               <Deposits />
-            </Paper>
-          </Grid>
-          {/* Status of Rooms */}
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <Rooms />
             </Paper>
           </Grid>
         </Grid>
