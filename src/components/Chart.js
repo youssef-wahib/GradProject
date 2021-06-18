@@ -17,9 +17,7 @@ function createData(time, amount) {
 }
 export default function Chart() {
   const theme = useTheme();
-  const { graph, setGraph } = useStore();
-  const { Selected } = useStore();
-
+  const { graph, setGraph, Selected } = useStore();
   return (
     <React.Fragment>
       <Title>Today</Title>

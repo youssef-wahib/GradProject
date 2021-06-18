@@ -3,7 +3,6 @@ import { database } from "../state/firebase";
 import { useStore } from "../state/state";
 import Title from "./Title";
 import {
-  Link,
   makeStyles,
   Table,
   TableBody,
@@ -33,8 +32,9 @@ export default function Rooms() {
     createData(2, "Patient rooms"),
     createData(3, "Reception"),
   ];
+
   const classes = useStyles();
-  const { Selected, setSelected } = useStore();
+  const { Selected, setSelected, loading } = useStore();
   let temp = [];
   useEffect(() => {
     let readRecommend = database.ref("/");
@@ -46,6 +46,7 @@ export default function Rooms() {
       temp.shift();
     });
   }, []);
+
   const [Level, setLevel] = useState(temp);
   return (
     <React.Fragment>
