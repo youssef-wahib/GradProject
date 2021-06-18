@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { database } from "../state/firebase";
+import { useStore } from "../state/state";
+import Title from "./Title";
 import {
   Link,
   makeStyles,
@@ -8,19 +11,10 @@ import {
   TableHead,
   TableRow,
 } from "@material-ui/core";
-import Title from "./Title";
-import { useStore } from "../state/state";
 
-function createData(id, name, level, recommendedLevel) {
-  return { id, name, level, recommendedLevel };
+function createData(id, name) {
+  return { id, name };
 }
-
-const rows = [
-  createData(0, "Reception", "201", "110"),
-  createData(1, "Nursing room", "102", "110"),
-  createData(2, "Emergency unit", "140", "110"),
-  createData(3, "Patient rooms", "203", "110"),
-];
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -33,8 +27,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Rooms() {
+  const rows = [
+    createData(0, "Emergency unit"),
+    createData(1, "Nursing room"),
+    createData(2, "Patient rooms"),
+    createData(3, "Reception"),
+  ];
   const classes = useStyles();
   const { Selected, setSelected } = useStore();
+  let temp = [];
+  useEffect(() => {
+    let readRecommend = database.ref("/");
+    readRecommend.on("value", (snapshot) => {
+      const data = snapshot.val();
+      Object.values(data).map((titles) => {
+        temp.push(Object.values(titles)[Object.values(titles).length - 1]);
+      });
+      temp.shift();
+    });
+  }, []);
+  const [Level, setLevel] = useState(temp);
   return (
     <React.Fragment>
       <Title>Recent Readings</Title>
@@ -43,7 +55,7 @@ export default function Rooms() {
           <TableRow>
             <TableCell size="medium">Room</TableCell>
             <TableCell>Level</TableCell>
-            <TableCell>Recommended Level</TableCell>
+            <TableCell>Room Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,8 +68,8 @@ export default function Rooms() {
               }}
             >
               <TableCell size="medium">{row.name}</TableCell>
-              <TableCell>{row.level}</TableCell>
-              <TableCell>{row.recommendedLevel}</TableCell>
+              <TableCell>{Level[row.id]}</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           ))}
         </TableBody>

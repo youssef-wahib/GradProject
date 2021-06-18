@@ -28,13 +28,13 @@ function App() {
   useEffect(() => {
     let roomReadings;
     if (Selected === 0) {
-      roomReadings = database.ref("Reception_Readings/");
+      roomReadings = database.ref("Emergency_Readings/");
     } else if (Selected === 1) {
       roomReadings = database.ref("Nursing_Readings/");
     } else if (Selected === 2) {
-      roomReadings = database.ref("Emergency_Readings/");
-    } else {
       roomReadings = database.ref("Patient_Readings/");
+    } else {
+      roomReadings = database.ref("Reception_Readings/");
     }
     roomReadings.on("value", (snapshot) => {
       const points = snapshot.val();
