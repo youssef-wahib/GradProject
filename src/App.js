@@ -21,20 +21,30 @@ function createData(time, amount) {
   return { time, amount };
 }
 function App() {
-  const { user, loading, setUser, setLoading } = useStore();
+  const { user, loading, setUser, setLoading, Selected } = useStore();
   const { graph, setGraph } = useStore();
 
   let temp = [];
   useEffect(() => {
-    let starCountRef = database.ref("Reception_Readings/");
-    starCountRef.on("value", (snapshot) => {
+    let roomReadings;
+    if (Selected === 0) {
+      roomReadings = database.ref("Reception_Readings/");
+    } else if (Selected === 1) {
+      roomReadings = database.ref("Nursing_Readings/");
+    } else if (Selected === 2) {
+      roomReadings = database.ref("Emergency_Readings/");
+    } else {
+      roomReadings = database.ref("Patient_Readings/");
+    }
+    roomReadings.on("value", (snapshot) => {
       const points = snapshot.val();
       Object.entries(points).map((values) => {
         temp.push(createData(values[0], values[1]));
       });
       setGraph(temp);
     });
-  }, [loading]);
+  }, [Selected]);
+
   useEffect(() => {
     const unsubscribe = authh.onAuthStateChanged((user) => {
       setUser(user);

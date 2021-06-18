@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "@material-ui/core/styles";
-import { database } from "../state/firebase";
+
 import {
   LineChart,
   Line,
@@ -19,27 +19,6 @@ export default function Chart() {
   const theme = useTheme();
   const { graph, setGraph } = useStore();
   const { Selected } = useStore();
-  let temp = [];
-  useEffect(() => {
-    let roomReadings;
-    if (Selected === 0) {
-      roomReadings = database.ref("Reception_Readings/");
-    } else if (Selected === 1) {
-      roomReadings = database.ref("Nursing_Readings/");
-    } else if (Selected === 2) {
-      roomReadings = database.ref("Emergency_Readings/");
-    } else {
-      roomReadings = database.ref("Patient_Readings/");
-    }
-    roomReadings.on("value", (snapshot) => {
-      const points = snapshot.val();
-      Object.entries(points).map((values) => {
-        temp.push(createData(values[0], values[1]));
-      });
-
-      setGraph(temp);
-    });
-  }, [Selected]);
 
   return (
     <React.Fragment>
