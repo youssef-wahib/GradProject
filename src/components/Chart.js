@@ -12,12 +12,25 @@ import {
 } from "recharts";
 import Title from "./Title";
 import { useStore } from "../state/state";
-
+function createData(time, amount) {
+  return { time, amount };
+}
 export default function Chart() {
   const theme = useTheme();
   const { graph, setGraph } = useStore();
 
- 
+  let temp = [];
+  useEffect(() => {
+    let starCountRef = database.ref("Readings/");
+    starCountRef.on("value", (snapshot) => {
+      const points = snapshot.val();
+      Object.entries(points).map((values) => {
+        temp.push(createData(values[0], values[1]));
+      });
+
+      setGraph(temp);
+    });
+  }, []);
 
   return (
     <React.Fragment>

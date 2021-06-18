@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@material-ui/core";
 import Title from "./Title";
+import { useStore } from "../state/state";
 
 function createData(id, name, level, recommendedLevel) {
   return { id, name, level, recommendedLevel };
@@ -33,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Rooms() {
   const classes = useStyles();
-  const [Selected, setSelected] = useState(0);
-
+  const { Selected, setSelected } = useStore();
   return (
     <React.Fragment>
       <Title>Recent Readings</Title>
