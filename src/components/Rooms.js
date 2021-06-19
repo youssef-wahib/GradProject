@@ -26,6 +26,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Rooms() {
+  const getIndex = (inp) => {
+    if (inp < 50) {
+      return "Excellent";
+    } else if (inp >= 50 && inp < 100) {
+      return "Good";
+    } else if (inp >= 100 && inp < 150) {
+      return "Lightly Polluted";
+    } else if (inp >= 150 && inp < 200) {
+      return "Moderately Polluted";
+    } else if (inp >= 200 && inp < 300) {
+      return "Heavily Polluted";
+    } else {
+      return "Severely Polluted";
+    }
+  };
+
   const rows = [
     createData(0, "Emergency unit"),
     createData(1, "Nursing room"),
@@ -34,7 +50,7 @@ export default function Rooms() {
   ];
 
   const classes = useStyles();
-  const { Selected, setSelected, loading } = useStore();
+  const { Selected, setSelected, loading, setLoading } = useStore();
   let temp = [];
   useEffect(() => {
     let readRecommend = database.ref("/");
@@ -44,9 +60,10 @@ export default function Rooms() {
         temp.push(Object.values(titles)[Object.values(titles).length - 1]);
       });
       temp.shift();
+      setLevel(temp);
+      setLoading(false);
     });
-  }, []);
-
+  }, [loading]);
   const [Level, setLevel] = useState(temp);
   return (
     <React.Fragment>
@@ -70,11 +87,11 @@ export default function Rooms() {
             >
               <TableCell size="medium">{row.name}</TableCell>
               <TableCell>{Level[row.id]}</TableCell>
-              <TableCell></TableCell>
+              <TableCell>{getIndex(Level[row.id])}</TableCell>
             </TableRow>
           ))}
         </TableBody>
-        <div className={classes.seeMore}></div>
+        <div className={classes.seeMore} />
       </Table>
     </React.Fragment>
   );

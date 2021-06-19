@@ -17,7 +17,6 @@ import {
 } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
-import BarChartIcon from "@material-ui/icons/BarChart";
 import WarningIcon from "@material-ui/icons/Warning";
 import AdbIcon from "@material-ui/icons/Adb";
 import MenuIcon from "@material-ui/icons/Menu";

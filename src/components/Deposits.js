@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Title from "./Title";
 import Box from "@material-ui/core/Box";
-import { database } from "../state/firebase";
 import { useStore } from "../state/state";
-function preventDefault(event) {
-  event.preventDefault();
-}
+
 let todayDate = () => {
   let today = new Date();
   return `Date:  ${today.getDate()} - ${

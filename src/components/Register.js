@@ -39,7 +39,6 @@ export default function SignUp() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const history = useHistory();
   const { signup, loading, setLoading } = useStore();
   async function handleSubmit() {
     if (email === "") {
@@ -131,7 +130,7 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}></Box>
+      <Box mt={5}/>
     </Container>
   );
 }

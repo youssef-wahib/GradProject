@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useTheme } from "@material-ui/core/styles";
 
 import {
@@ -17,7 +17,7 @@ function createData(time, amount) {
 }
 export default function Chart() {
   const theme = useTheme();
-  const { graph, setGraph, Selected } = useStore();
+  const { graph } = useStore();
   return (
     <React.Fragment>
       <Title>Today</Title>

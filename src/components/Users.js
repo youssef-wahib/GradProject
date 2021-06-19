@@ -1,5 +1,5 @@
 import React from "react";
-import { database } from "../state/firebase";
+// import { database } from "../state/firebase";
 import clsx from "clsx";
 import {
   makeStyles,
