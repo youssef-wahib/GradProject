@@ -13,7 +13,6 @@ import {
 import { Link } from "react-router-dom";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { useStore } from "../state/state";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,7 +38,7 @@ export default function SignUp() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const { signup, loading, setLoading } = useStore();
+  const { signup, setLoading } = useStore();
   async function handleSubmit() {
     if (email === "") {
       alert("empty field");
@@ -130,7 +129,7 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}/>
+      <Box mt={5} />
     </Container>
   );
 }
