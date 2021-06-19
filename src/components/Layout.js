@@ -110,9 +110,8 @@ export default function Dashboard({ children }) {
   const classes = useStyles();
   const history = useHistory();
 
-  const { logout } = useStore();
+  const { logout, SelectedPage, setSelectedPage } = useStore();
   const [open, setOpen] = useState(true);
-  const [SelectedPage, setSelectedPage] = useState("Dashboard");
   const handleDrawerOpen = () => {
     setOpen(true);
   };

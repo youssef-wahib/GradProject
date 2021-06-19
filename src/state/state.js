@@ -19,4 +19,6 @@ export const useStore = create((set) => ({
   setGraph: (inp) => set((state) => ({ graph: inp })),
   Selected: 0,
   setSelected: (inp) => set((state) => ({ Selected: inp })),
+  SelectedPage: "Dashboard",
+  setSelectedPage: (inp) => set((state) => ({ SelectedPage: inp })),
 }));
