@@ -164,7 +164,6 @@ export default function Warnings() {
           </List>
         </Paper>
       );
-    } else {
     }
   };
   useEffect(() => {
