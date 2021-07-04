@@ -1,6 +1,6 @@
 import React from "react";
 // import { database } from "../state/firebase";
-import clsx from "clsx";
+import Chart from "./Chart";
 import {
   makeStyles,
   Container,
@@ -8,34 +8,34 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import { useStore } from "../state/state";
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
-  paper: {
+  paperFormat: {
     padding: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
-  },
-  fixedHeight: {
-    height: 240,
+    height: 640,
   },
 }));
+const Rooms = ["Emergency unit", "Nursing room", "Patient rooms", "Reception"];
 export default function Users() {
   const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  const { Selected } = useStore();
   return (
     <React.Fragment>
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={3}>
-          <Grid item lg={6} md={6} xs={12}>
-            <Paper className={fixedHeightPaper}>
+          <Grid item lg={12} md={12} xs={12}>
+            <Paper className={classes.paperFormat}>
               <Typography variant="h4" color="secondary">
-                this is a test
+                Predictions for {Rooms[Selected]}:
               </Typography>
+              <Chart />
             </Paper>
           </Grid>
         </Grid>

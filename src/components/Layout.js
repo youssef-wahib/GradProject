@@ -16,7 +16,7 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
+import TimelineIcon from "@material-ui/icons/Timeline";
 import WarningIcon from "@material-ui/icons/Warning";
 import AdbIcon from "@material-ui/icons/Adb";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -194,13 +194,13 @@ export default function Dashboard({ children }) {
             button
             onClick={() => {
               history.push("Users");
-              setSelectedPage("User Accounts");
+              setSelectedPage("Room Predictions");
             }}
           >
             <ListItemIcon>
-              <PeopleIcon />
+              <TimelineIcon />
             </ListItemIcon>
-            <ListItemText primary="User Accounts" />
+            <ListItemText primary="Room Predictions" />
           </ListItem>
           <ListItem
             button
