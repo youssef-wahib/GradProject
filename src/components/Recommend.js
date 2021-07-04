@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   selectEmpty: {
     marginTop: theme.spacing(-0.5),
-    width: "30%",
+    width: "60%",
   },
   selectCatLable: {
     marginLeft: theme.spacing(1.5),
