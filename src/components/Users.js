@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { database } from "../state/firebase";
 import { useTheme } from "@material-ui/core/styles";
-
+import axios from "axios"
 import {
   LineChart,
   Line,
@@ -20,6 +20,10 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import { SettingsSystemDaydreamTwoTone } from "@material-ui/icons";
+function createData(time, amount) {
+  return { time, amount };
+}
 const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
@@ -36,6 +40,22 @@ const useStyles = makeStyles((theme) => ({
 const Rooms = ["Emergency unit", "Nursing room", "Patient rooms", "Reception"];
 export default function Users() {
   const theme = useTheme();
+  const [data, setData] = useState([])
+  useEffect(() => {
+    setData([
+      createData(0, 13),
+      createData(1, 23),
+      createData(2, 50),
+      createData(3, 70),
+      createData(4, 45),
+      createData(5, 50),
+      createData(6, 55),
+      createData(7, 60)
+      
+    ])
+  }, [])
+  
+  console.log(data)
   const classes = useStyles();
   const { Selected } = useStore();
   return (
@@ -49,7 +69,7 @@ export default function Users() {
               </Typography>
               <ResponsiveContainer>
                 <LineChart
-                  // data={graph}
+                  data={data}
                   margin={{
                     top: 16,
                     right: 16,
